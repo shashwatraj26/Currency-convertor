@@ -1,0 +1,10 @@
+[graphql_naming]
+description = "GraphQL query names must contain 'for'"
+pattern = '''(query|mutation)\s+(\w+)\s*\(.*\)\s*\{'''
+condition = "not ('for' in group2.lower())"
+paths = ["**/*.graphql", "**/*.gql"]
+comment = '''
+🔍 **Naming Convention Violation**  
+GraphQL operation `{{ group2 }}` must include the word `for` in its name.  
+**Example valid name**: `GetUserForProfile`
+'''
