@@ -1,33 +1,11 @@
 [github_app]
-pr_commands = [
-    "/describe",
-    "/review",
-    "/improve",
-    "/update_changelog",  
+pr_commands = [ "/improve"
 ]
-
-
-[jira]
-jira_base_url = "https://qodo-confluence.atlassian.net"
-
-[pr_find_similar_component]
-search_from_org = true 
-number_of_keywords = 5  
-number_of_results = 5  
-
-[pr_description]
-extra_instructions="""\
-For the title, use the format [type]: [summary] do an estimate of the level of effort for the PR and add the the estimate between 1-10.
-In the body of the description generate and mermaid diagram that describes the code that has been changed and include diagrams like sequence diagrams and class diagrams.
-
-"""
-publish_labels=true
-generate_ai_title=true
 
 [pr_code_suggestions]
 extra_instructions="""\
 Additional instructions:
--
+- When reviewing GraphQL queries, if the query name does not contain 'For', provide a suggestion to rename the query to include 'For' for consistency.
 """
 num_code_suggestions_per_chunk="8"
 suggestions_score_threshold="8"
@@ -36,14 +14,7 @@ demand_code_suggestions_self_review = true
 allow_thumbs_up_down = true
 enable_chat_in_code_suggestions = true
 
-[config]
-publish_logs=false
-
-
-
-[rag_arguments]
-enable_rag=true
-rag_repo_list = ["Codium-ai/devlabs"]
-
-[pr_update_changelog]
-push_changelog_changes = true
+# Custom rule for GraphQL query naming
+[graphql_query_naming]
+enabled = true
+rule = "If a GraphQL query name does not contain 'For', suggest renaming it to include 'For'."
