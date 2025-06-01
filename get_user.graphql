@@ -1,4 +1,4 @@
-# VIOLATION: Query name "GetUser" missing "for"
+# VIOLATION: Query name "GetUser" is missing "for"
 query GetUser($id: ID!) {
   user(id: $id) {
     id
