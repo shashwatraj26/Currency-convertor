@@ -1,0 +1,14 @@
+validations:
+  - name: "Check GraphQL Query Name Format"
+    script: |
+      #!/bin/bash
+      # This script checks if the GraphQL query name contains 'For' in between
+      QUERY_FILES=$(git diff --name-only HEAD~1 HEAD | grep '\.graphql$')
+      for FILE in $QUERY_FILES; do
+        QUERY_NAME=$(basename "$FILE" .graphql)
+        if [[ ! "$QUERY_NAME" =~ .+For.+ ]]; then
+          echo "Error: GraphQL query name '$QUERY_NAME' does not contain 'For' in between."
+          exit 1
+        fi
+      done
+      exit 0
